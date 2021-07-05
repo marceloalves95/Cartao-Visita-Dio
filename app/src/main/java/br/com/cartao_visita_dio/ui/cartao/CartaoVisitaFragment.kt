@@ -35,6 +35,7 @@ class CartaoVisitaFragment : Fragment() {
         _binding = CartaoVisitaFragmentBinding.inflate(inflater, container, false)
         initViews()
         setHasOptionsMenu(true)
+        setUpPermissions()
         return binding.root
     }
 
