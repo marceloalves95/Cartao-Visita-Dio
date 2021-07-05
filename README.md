@@ -6,7 +6,7 @@
 Esse projeto está dividido em duas branches:
 
 - [Cartao-Visita-Dio com Koin](https://github.com/marceloalves95/Cartao-Visita-Dio/tree/Cartao-Visita-Dio-Koin)
-- [Cartao-Visita-Dio com DaggerHilt](https://github.com/marceloalves95/ToDoList-Dio/tree/ToDoListDio-DaggerHilt)
+- [Cartao-Visita-Dio com DaggerHilt](https://github.com/marceloalves95/ToDoList-Dio/tree/Cartao-Visita-Dio-DaggerHilt)
 
 Para mais detalhes sobre a implementação de cada injeção de dependência, escolha a branch acima ou digite o código abaixo para baixar a branch especifica:
 
@@ -233,19 +233,25 @@ buildscript {
     ext{
         //Room Version
         room_version="2.3.0"
-        //DaggerHilt Version
+        //Dagger Hilt Version
         hiltVersion = '2.37'
-        ........
+        //........
     }
-   
+    dependencies{
+    .......
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
+        classpath "com.google.dagger:hilt-android-gradle-plugin:$hiltVersion"
+    }
+    .......
 }
-.......
 ```
 
 Inclua as seguintes dependências adicionando o código no `build.gradle` do módulo do projeto e atualize o `Gradle`:
 
 ```groovy
 plugins {
+    id 'kotlin-kapt'
+    id 'kotlin-parcelize'
     //Navigation Safe Args
     id "androidx.navigation.safeargs.kotlin"
     //DaggerHilt
@@ -288,10 +294,16 @@ class Application:Application()
 Acrescente na linha no `AndroidManifest.xml`
 
 ```xml
+<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" tools:ignore="ScopedStorage" />
+
 <application
-        android:name="seupacote.di.Application"
+        android:name=".di.Application"
         //Seu tema
         android:theme="@style/Theme.MeuTema">
+  <activity
+            android:name=".ui.main.MainActivity"
+            android:theme="@style/Theme.MeuTema.NoActionBar">
        .....
 </application>
 ```
@@ -312,11 +324,9 @@ object DatabaseModule {
 
 
     @Provides
-    fun provideTarefaDao(appDatabase: AppDatabase): TarefaDao{
-        return appDatabase.tarefaDao()
+    fun provideVisitaDao(appDatabase: AppDatabase): VisitaDao{
+        return appDatabase.visitaDao()
     }
-    
-    .......
 
 }
 ```
@@ -326,17 +336,16 @@ object DatabaseModule {
 Crie a tabela do seu banco:
 
 ```kotlin
-@Entity(tableName = "tarefa")
-data class Tarefa(
+@Entity(tableName = "visita")
+data class Visita(
     @PrimaryKey(autoGenerate = true)
-    val id: Int,
-    val titulo: String,
-    val descricao: String,
-    val horario: String,
-    val data: String,
+    val id:Int,
+    val nome:String,
+    val cargo:String,
+    val empresa:String,
+    val telefone:String,
+    val email:String,
     val cor: String,
-    val nomeCor: String,
-    val status:String,
     var selected: Boolean
 )
 ```
@@ -347,14 +356,14 @@ Crie uma interface para o `Dao` do projeto:
 
 ```kotlin
 @Dao
-interface TarefaDao {
+interface VisitaDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(tarefa: Tarefa)
+    suspend fun insert(visita: Visita)
     @Update
-    suspend fun update(tarefa: Tarefa)
-    @Query("SELECT * FROM tarefa")
-    suspend fun allTarefas():MutableList<Tarefa>
-    @Query("DELETE FROM tarefa WHERE id IN (:id)")
+    suspend fun update(visita: Visita)
+    @Query("SELECT * FROM visita")
+    suspend fun all():MutableList<Visita>
+    @Query("DELETE FROM visita WHERE id IN (:id)")
     suspend fun deleteAll(id:MutableList<Int>)
 }
 ```
@@ -365,12 +374,13 @@ Crie uma classe `Repository`
 
 ```kotlin
 @Singleton
-class TarefaRepository @Inject constructor(private val tarefaDao: TarefaDao) {
+class VisitaRepository @Inject constructor(private val visitaDao: VisitaDao) {
 
-    suspend fun insert(tarefa: Tarefa) = tarefaDao.insert(tarefa)
-    suspend fun update(tarefa: Tarefa) = tarefaDao.update(tarefa)
-    suspend fun allTarefas():MutableList<Tarefa> = tarefaDao.allTarefas()
-    suspend fun deleteAll(id:MutableList<Int>) = tarefaDao.deleteAll(id)
+    suspend fun insert(visita: Visita) = visitaDao.insert(visita)
+    suspend fun update(visita: Visita) = visitaDao.update(visita)
+    suspend fun all():MutableList<Visita> = visitaDao.all()
+    suspend fun deleteAll(id:MutableList<Int>) = visitaDao.deleteAll(id)
+
 }
 ```
 
@@ -380,23 +390,23 @@ Crie a `ViewModel` do seu projeto:
 
 ```kotlin
 @HiltViewModel
-class TarefaViewModel @Inject constructor(private val repository: TarefaRepository):ViewModel(){
+class CartaoVisitaViewModel @Inject constructor(private val repository: VisitaRepository):ViewModel(){
 
-    val listAll = MutableLiveData<MutableList<Tarefa>>()
+    val listAll = MutableLiveData<MutableList<Visita>>()
 
-    fun adicionarTarefas(tarefa: Tarefa){
+    fun adicionarCartao(visita: Visita){
         viewModelScope.launch {
-            repository.insert(tarefa)
+            repository.insert(visita)
         }
     }
-    fun atualizarTarefas(tarefa: Tarefa){
+    fun atualizarCartao(visita: Visita){
         viewModelScope.launch {
-            repository.update(tarefa)
+            repository.update(visita)
         }
     }
-    fun listarTarefas(){
+    fun listarCartoes(){
         viewModelScope.launch {
-            listAll.value = repository.allTarefas()
+            listAll.value = repository.all()
         }
     }
     fun deleteAll(id:MutableList<Int>){
@@ -404,6 +414,7 @@ class TarefaViewModel @Inject constructor(private val repository: TarefaReposito
             repository.deleteAll(id)
         }
     }
+
 }
 ```
 
