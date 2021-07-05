@@ -6,7 +6,7 @@
 Esse projeto está dividido em duas branches:
 
 - [Cartao-Visita-Dio com Koin](https://github.com/marceloalves95/Cartao-Visita-Dio/tree/Cartao-Visita-Dio-Koin)
-- [Cartao-Visita-Dio com DaggerHilt](https://github.com/marceloalves95/ToDoList-Dio/tree/Cartao-Visita-Dio-DaggerHilt)
+- [Cartao-Visita-Dio com DaggerHilt](https://github.com/marceloalves95/Cartao-Visita-Dio/tree/Cartao-Visita-Dio-DaggerHilt)
 
 Para mais detalhes sobre a implementação de cada injeção de dependência, escolha a branch acima ou digite o código abaixo para baixar a branch especifica:
 
