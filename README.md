@@ -5,16 +5,16 @@
 
 Esse projeto está dividido em duas branches:
 
-- [Cartao-Visita-Dio com Koin](https://github.com/marceloalves95/ToDoList-Dio/tree/ToDoListDio-Koin)
+- [Cartao-Visita-Dio com Koin](https://github.com/marceloalves95/Cartao-Visita-Dio/tree/Cartao-Visita-Dio-Koin)
 - [Cartao-Visita-Dio com DaggerHilt](https://github.com/marceloalves95/ToDoList-Dio/tree/ToDoListDio-DaggerHilt)
 
 Para mais detalhes sobre a implementação de cada injeção de dependência, escolha a branch acima ou digite o código abaixo para baixar a branch especifica:
 
 ```
 //Branch Cartao-Visita-Dio-Koin
-git clone https://github.com/marceloalves95/ToDoList-Dio.git --branch ToDoListDio-Koin
+git clone https://github.com/marceloalves95/Cartao-Visita-Dio.git --branch Cartao-Visita-Dio-Koin
 //Branch Cartao-Visita-Dio-DaggerHilter
-git clone https://github.com/marceloalves95/ToDoList-Dio.git --branch ToDoListDio-DaggerHilt
+git clone https://github.com/marceloalves95/Cartao-Visita-Dio.git --branch Cartao-Visita-Dio-DaggerHilt
 ```
 
 #### Instalação com o Koin
