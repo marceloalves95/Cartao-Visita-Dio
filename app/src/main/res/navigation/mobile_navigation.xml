@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/navigation_cartao_visita">
+
+    <fragment
+        android:id="@+id/navigation_cartao_visita"
+        android:name="br.com.cartao_visita_dio.ui.cartao.CartaoVisitaFragment"
+        android:label="@string/title_cartao_visita"
+        tools:layout="@layout/cartao_visita_fragment"
+        >
+        <action
+            android:id="@+id/action_navigation_cartao_visita_to_navigation_detail_cartao_visita"
+            app:destination="@id/navigation_detail_cartao_visita" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_detail_cartao_visita"
+        android:name="br.com.cartao_visita_dio.ui.detail.DetailFragment"
+        tools:layout="@layout/detail_fragment" >
+        <action
+            android:id="@+id/action_navigation_detail_cartao_visita_to_navigation_cartao_visita"
+            app:destination="@id/navigation_cartao_visita" />
+        <argument
+            android:name="id"
+            app:argType="integer"
+            android:defaultValue="0" />
+        <argument
+            android:name="cartao"
+            app:argType="br.com.cartao_visita_dio.ui.cartao.CartaoArgs"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
+</navigation>

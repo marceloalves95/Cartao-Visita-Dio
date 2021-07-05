@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Cartao-Visita-Dio</string>
+    <string name="title_cartao_visita">Cartão de Visita</string>
+    <string name="label_share_to">Compartilhar</string>
+    <string name="nome">Nome</string>
+    <string name="empresa">Empresa</string>
+    <string name="telefone">Telefone</string>
+    <string name="email">E-mail</string>
+    <string name="cor">Cor</string>
+    <string name="cargo">Cargo</string>
+    <string name="cadastrar_cartao_visita">Cadastrar Cartão de Visita</string>
+    <string name="alterar_cartao_visita">Alterar Cartão de Visita</string>
+    <string name="cadastrar_cartao">Cadastrar Cartão</string>
+    <string name="alterar_cartao">Alterar Cartão</string>
+    <string name="deletar_cartao">Deletar Cartão</string>
+    <string name="search">Procurar</string>
+</resources>
