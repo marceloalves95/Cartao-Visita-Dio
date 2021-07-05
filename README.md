@@ -420,7 +420,7 @@ class MainActivit{
 
 #### Telas do Aplicativo
 
-|           ![](tarefa.png)            | ![](pesquisar.png)                       |
+|           ![](cartaoVisita.png)            | ![](pesquisarCartao.png)                       |
 | :------------------------: | --------------------------- |
 | Tela inicial do aplicativo | Tela de pesquisa            |
 |           ![](criarTarefa.png)            | ![](alterarTarefa.png)                       |
