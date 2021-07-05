@@ -422,8 +422,10 @@ class MainActivit{
 
 |           ![](cartaoVisita.png)            | ![](pesquisarCartao.png)                       |
 | :------------------------: | --------------------------- |
-| Tela inicial do aplicativo | Tela de pesquisa            |
-|           ![](criarTarefa.png)            | ![](alterarTarefa.png)                       |
-| Tela de criação da tarefa  | Tela de alteração da tarefa |
+| Tela inicial do aplicativo | Tela de pesquisa dos cartões           |
+|           ![](cadastrarCartao.png)            | ![](alterarCartao.png)                       |
+| Tela de criação dos cartões de visita  | Tela de alteração dos cartões de visita |
+|           ![](deletarCartao.png)            | ![](share.png)                       |
+| Tela de remoção dos cartões de visita  | Tela com a imagem do cartão |
 
 
