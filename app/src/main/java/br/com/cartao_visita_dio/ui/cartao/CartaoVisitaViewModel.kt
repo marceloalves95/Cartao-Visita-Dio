@@ -5,13 +5,16 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.cartao_visita_dio.data.repository.VisitaRepository
 import br.com.cartao_visita_dio.domain.Visita
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 /**
  * @author RubioAlves
  * Created 04/07/2021 at 14:40
  */
-class CartaoVisitaViewModel(private val repository: VisitaRepository):ViewModel(){
+@HiltViewModel
+class CartaoVisitaViewModel @Inject constructor(private val repository: VisitaRepository):ViewModel(){
 
     val listAll = MutableLiveData<MutableList<Visita>>()
 

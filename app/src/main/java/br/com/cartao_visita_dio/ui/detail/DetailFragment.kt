@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import br.com.cartao_visita_dio.R
@@ -18,12 +19,13 @@ import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.MaterialAutoCompleteTextView
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * @author RubioAlves
  * Created 02/07/2021 at 17:27
  */
+@AndroidEntryPoint
 class DetailFragment : Fragment() {
 
     private var _binding: DetailFragmentBinding? = null
@@ -39,7 +41,7 @@ class DetailFragment : Fragment() {
     private val nomeCores: MutableList<String> = mutableListOf()
     private val cores: MutableList<String> = mutableListOf()
     private val validadores: MutableList<Validador> = ArrayList()
-    private val viewModel: CartaoVisitaViewModel by viewModel()
+    private val viewModel: CartaoVisitaViewModel by viewModels()
     private val args by navArgs<DetailFragmentArgs>()
 
     override fun onCreateView(

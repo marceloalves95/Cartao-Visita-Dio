@@ -1,5 +1,6 @@
 package br.com.cartao_visita_dio.ui.cartao
 
+import android.Manifest
 import android.os.Bundle
 import android.view.*
 import android.view.inputmethod.EditorInfo
@@ -7,23 +8,24 @@ import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.cartao_visita_dio.R
 import br.com.cartao_visita_dio.databinding.CartaoVisitaFragmentBinding
-import org.koin.androidx.viewmodel.ext.android.viewModel
-import android.Manifest
 import br.com.cartao_visita_dio.utils.other.Image
+import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * @author RubioAlves
  * Created 02/07/2021 at 16:17
  */
+@AndroidEntryPoint
 class CartaoVisitaFragment : Fragment() {
 
     private var _binding: CartaoVisitaFragmentBinding? = null
     private val binding get() = _binding!!
-    private val viewModel:CartaoVisitaViewModel by viewModel()
+    private val viewModel:CartaoVisitaViewModel by viewModels()
     private lateinit var cartaoAdapter:CartaoVisitaAdapter
     private val listarId = mutableListOf<Int>()
     var actionMode: ActionMode? = null
@@ -35,6 +37,7 @@ class CartaoVisitaFragment : Fragment() {
         _binding = CartaoVisitaFragmentBinding.inflate(inflater, container, false)
         initViews()
         setHasOptionsMenu(true)
+        setUpPermissions()
         return binding.root
     }
 
